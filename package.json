@@ -2,44 +2,25 @@
   "name": "codex-led-widget",
   "version": "0.1.0",
   "description": "Windows desktop LED widget for showing local Codex usage quota.",
-  "main": "src/main/main.js",
   "author": "Codex Quota Widget Contributors",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "electron .",
-    "start": "electron .",
-    "build": "set CSC_IDENTITY_AUTO_DISCOVERY=false&& electron-builder --win portable",
-    "build:dir": "set CSC_IDENTITY_AUTO_DISCOVERY=false&& electron-builder --dir"
-  },
-  "build": {
-    "appId": "cn.codex.quota.widget",
-    "productName": "Codex Quota Widget",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "src/**/*",
-      "package.json"
-    ],
-    "win": {
-      "icon": "assets/icon/app-icon.ico",
-      "target": [
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
-      ]
-    },
-    "portable": {
-      "artifactName": "Codex-Quota-Widget-${version}-win-x64.exe"
-    }
+    "dev": "tauri dev",
+    "dev:web": "vite --host 127.0.0.1 --port 1420 --strictPort",
+    "build": "tauri build",
+    "build:web": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.11.2",
-    "electron": "^31.7.7",
-    "electron-builder": "^24.13.3"
+    "@vitejs/plugin-vue": "^6.0.7",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vue-tsc": "^3.3.5"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.0",
+    "vue": "^3.5.38"
   }
 }
