@@ -51,9 +51,9 @@ Codex LED Widget 是一个轻量的 Windows 桌面悬浮组件。它通过本机
 ## 下载
 
 前往 [GitHub Releases](https://github.com/Wolfares526/codex-led-widget/releases/latest)
-下载 Windows x64 便携版：
+下载 Windows x64 安装包：
 
-`Codex-Quota-Widget-0.1.0-win-x64.exe`
+`Codex Quota Widget_0.1.0_x64-setup.exe`
 
 当前版本：`v0.1.0`
 
@@ -67,9 +67,9 @@ Codex LED Widget 是一个轻量的 Windows 桌面悬浮组件。它通过本机
 
 ## 使用方法
 
-1. 从 [Releases](https://github.com/Wolfares526/codex-led-widget/releases/latest) 下载 `.exe`。
-2. 双击运行，无需安装。
-3. 小组件默认显示在主屏幕右上角并保持置顶。
+1. 从 [Releases](https://github.com/Wolfares526/codex-led-widget/releases/latest) 下载 Windows 安装包。
+2. 双击安装包并按提示安装。
+3. 启动应用后，小组件默认显示在主屏幕右上角并保持置顶。
 4. 使用顶部按钮切换语言、置顶状态、刷新、隐藏或退出。
 5. 隐藏后可通过系统托盘重新打开。
 
@@ -114,25 +114,26 @@ pnpm install
 pnpm run dev
 ```
 
-构建 Windows 便携版：
+构建 Windows 安装包：
 
 ```powershell
-$env:ELECTRON_MIRROR = "https://npmmirror.com/mirrors/electron/"
-$env:ELECTRON_BUILDER_BINARIES_MIRROR = "https://npmmirror.com/mirrors/electron-builder-binaries/"
 pnpm run build
 ```
 
-构建产物生成在 `dist/`，该目录不会提交到 Git。
+前端构建产物生成在 `dist/`，Tauri 应用和安装包生成在
+`src-tauri/target/release/`，这些目录不会提交到 Git。
 
 ## 项目结构
 
 ```text
 codex-led-widget/
 ├── assets/                 # 项目截图和打包图标
+├── src-tauri/              # Tauri 2 Rust 后端、窗口、托盘和打包配置
 ├── src/
-│   ├── assets/             # 运行时窗口与托盘图标
-│   ├── main/               # Electron 主进程和额度服务
-│   └── renderer/           # 界面、样式和交互逻辑
+│   ├── components/         # Vue 3 界面组件
+│   ├── composables/        # 额度、语言和窗口状态逻辑
+│   ├── styles/             # 界面样式
+│   └── types/              # 前后端共享类型
 ├── package.json
 └── pnpm-lock.yaml
 ```
@@ -159,10 +160,11 @@ codex-led-widget/
 
 ## 技术栈
 
-- Electron
-- JavaScript
-- HTML / CSS
-- electron-builder
+- Tauri 2
+- Rust
+- Vue 3
+- TypeScript
+- Vite
 - pnpm
 
 ## 贡献
@@ -194,7 +196,7 @@ from your local Codex CLI and displays the remaining 5-hour and 7-day windows.
 
 ### Download
 
-Download the Windows x64 portable executable from
+Download the Windows x64 installer from
 [GitHub Releases](https://github.com/Wolfares526/codex-led-widget/releases/latest).
 
 ### Requirements
@@ -219,3 +221,4 @@ pnpm run build
 ```
 
 The generated files are written to `dist/`, which is excluded from Git.
+Tauri bundles are written to `src-tauri/target/release/bundle/`.
