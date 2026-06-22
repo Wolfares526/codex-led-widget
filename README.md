@@ -34,6 +34,14 @@ Codex LED Widget 是一个轻量的 Windows 桌面悬浮组件。它通过本机
   <img src="assets/screenshot.png" width="88%" alt="Codex LED Widget compact vertical desktop screenshot" />
 </p>
 
+<p align="center">
+  <img src="assets/screenshot-low-quota.png" width="88%" alt="Codex LED Widget low quota desktop screenshot" />
+</p>
+
+<p align="center">
+  <img src="assets/screenshot-poster.png" width="48%" alt="Codex LED Widget poster screenshot" />
+</p>
+
 ## 功能
 
 - 竖版透明悬浮窗口，适合贴在桌面边缘常驻
@@ -52,11 +60,10 @@ Codex LED Widget 是一个轻量的 Windows 桌面悬浮组件。它通过本机
 前往 [GitHub Releases](https://github.com/Wolfares526/codex-led-widget/releases/latest)
 下载 Windows x64 安装包：
 
-```text
-Codex Quota Widget_0.1.0_x64-setup.exe
-```
+- 推荐：[Codex Quota Widget_0.2.0_x64-setup.exe](https://github.com/Wolfares526/codex-led-widget/releases/download/v0.2.0/Codex%20Quota%20Widget_0.2.0_x64-setup.exe)
+- MSI：[Codex Quota Widget_0.2.0_x64_en-US.msi](https://github.com/Wolfares526/codex-led-widget/releases/download/v0.2.0/Codex%20Quota%20Widget_0.2.0_x64_en-US.msi)
 
-当前版本：`v0.1.0`
+当前版本：`v0.2.0`
 
 > 应用暂未进行代码签名。Windows 首次运行时可能显示“未知发布者”，请确认文件来自本仓库后选择“更多信息” -> “仍要运行”。
 
