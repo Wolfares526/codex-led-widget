@@ -1,6 +1,7 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
+    displayValue: string;
     percent?: number;
     remainingLabel: string;
   }>(),
@@ -8,10 +9,14 @@ withDefaults(
     percent: 0
   }
 );
+
+defineEmits<{
+  toggleWindow: [];
+}>();
 </script>
 
 <template>
-  <div class="liquid-meter" aria-label="Codex 剩余额度">
+  <button class="liquid-meter" type="button" aria-label="切换 5小时和7天额度展示" @click="$emit('toggleWindow')">
     <div class="glass-rim"></div>
     <div class="liquid-fill" :style="{ '--level': `${Math.max(5, percent)}%` }">
       <div class="wave wave-one"></div>
@@ -19,8 +24,8 @@ withDefaults(
     </div>
     <div class="shine"></div>
     <div class="meter-copy">
-      <strong>{{ percent }}%</strong>
+      <strong>{{ displayValue }}%</strong>
       <span>{{ remainingLabel }}</span>
     </div>
-  </div>
+  </button>
 </template>

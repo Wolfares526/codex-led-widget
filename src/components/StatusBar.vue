@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <footer class="status">
+  <footer class="status" aria-live="polite">
     <span class="status-dot" :class="state"></span>
     <span>{{ text }}</span>
   </footer>

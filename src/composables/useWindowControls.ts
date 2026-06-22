@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import { invoke } from "@tauri-apps/api/core";
 import { listen, type UnlistenFn } from "@tauri-apps/api/event";
 
@@ -20,13 +20,15 @@ export function useWindowControls() {
     return invoke("close_app");
   }
 
-  listen<boolean>("window://always-on-top-changed", (event) => {
-    isPinned.value = event.payload;
-  }).then((unlisten) => {
-    unlistenPinned = unlisten;
+  onMounted(() => {
+    listen<boolean>("window://always-on-top-changed", (event) => {
+      isPinned.value = event.payload;
+    }).then((unlisten) => {
+      unlistenPinned = unlisten;
+    });
   });
 
-  window.addEventListener("beforeunload", () => {
+  onUnmounted(() => {
     unlistenPinned?.();
   });
 

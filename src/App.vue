@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import LiquidMeter from "./components/LiquidMeter.vue";
-import QuotaPanel from "./components/QuotaPanel.vue";
 import StatusBar from "./components/StatusBar.vue";
 import TitleBar from "./components/TitleBar.vue";
 import { useLocale } from "./composables/useLocale";
@@ -9,50 +8,49 @@ import { useWindowControls } from "./composables/useWindowControls";
 
 const { copy, language, toggleLanguage } = useLocale();
 const {
+  displayDeadlineText,
+  displayPercent,
+  displayWindowLabel,
+  isLoading,
   percent,
   planText,
-  primaryText,
   refreshQuota,
-  secondaryText,
   state,
-  stateText,
-  statusText
+  statusText,
+  toggleDisplayWindow
 } = useQuota();
-const { closeApp, hideWindow, isPinned, togglePinned } = useWindowControls();
+const { hideWindow, isPinned, togglePinned } = useWindowControls();
 </script>
 
 <template>
-  <main class="widget">
+  <main class="widget" data-tauri-drag-region>
     <div class="ambient ambient-a"></div>
     <div class="ambient ambient-b"></div>
 
     <TitleBar
       :brand="copy.brand"
+      :plan-text="planText"
       :state="state"
-      :state-text="stateText"
       :language-label="language === 'zh' ? 'EN' : '中'"
       :is-pinned="isPinned"
       :pin-label="isPinned ? copy.pinned : copy.unpinned"
       :refresh-label="copy.refresh"
+      :is-refreshing="isLoading"
       :hide-label="copy.hide"
-      :close-label="copy.close"
       @toggle-language="toggleLanguage"
       @toggle-pinned="togglePinned"
       @refresh="refreshQuota"
       @hide="hideWindow"
-      @close="closeApp"
     />
 
     <section class="content">
-      <LiquidMeter :percent="percent" :remaining-label="copy.left" />
-      <QuotaPanel
-        :primary-label="copy.primary"
-        :primary-text="primaryText"
-        :secondary-label="copy.secondary"
-        :secondary-text="secondaryText"
-        :plan-label="copy.plan"
-        :plan-text="planText"
+      <LiquidMeter
+        :display-value="displayPercent"
+        :percent="percent"
+        :remaining-label="displayWindowLabel"
+        @toggle-window="toggleDisplayWindow"
       />
+      <div class="deadline-row" aria-live="polite">{{ displayDeadlineText }}</div>
     </section>
 
     <StatusBar :state="state" :text="statusText" />

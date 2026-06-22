@@ -13,13 +13,14 @@
     "windows": [
       {
         "title": "Codex LED Widget",
-        "width": 390,
-        "height": 236,
-        "minWidth": 390,
-        "minHeight": 236,
+        "width": 172,
+        "height": 304,
+        "minWidth": 172,
+        "minHeight": 304,
         "resizable": false,
         "decorations": false,
         "transparent": true,
+        "shadow": false,
         "alwaysOnTop": true,
         "skipTaskbar": false,
         "fullscreen": false
